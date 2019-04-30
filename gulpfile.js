@@ -6,13 +6,12 @@ const browserSync = require('browser-sync').create();
 const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
-const concatCss = require('gulp-concat-css');
-const uglifyCss = require('gulp-uglifycss');
 
 // Function for to compile Sass and add prefixes
 function compileSass() {
   return gulp
       .src([
+          './node_modules/normalize.scss/normalize.scss',
           './css/scss/**/*.scss',
       ])
       .pipe(sass({
@@ -27,20 +26,6 @@ function compileSass() {
 }
 gulp.task('sass', compileSass); // Gulp task for function Sass
 
-// CSS Plugin
-function pluginsCSS() {
-  return gulp
-          .src([
-            // './node_modules/bootstrap/dist/css/bootstrap-reboot.min.css',
-            // './node_modules/bootstrap/dist/css/bootstrap-reboot.min.css',
-            './node_modules/bootstrap/dist/css/bootstrap.css',
-            './node_modules/owl.carousel/dist/assets/owl.carousel.css',
-          ])
-          .pipe(concatCss('plugins.css'))
-          .pipe(uglifyCss())
-          .pipe(gulp.dest('./css/'));
-}
-gulp.task('pluginsCSS', pluginsCSS); // Gulp task for pluginsCss
 
 // Function for merge js
 function gulpJS() {
@@ -60,8 +45,6 @@ function pluginsJS() {
   return gulp
       .src([
           './node_modules/jquery/dist/jquery.min.js',
-          './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
-          './node_modules/owl.carousel/dist/owl.carousel.min.js',
       ])
       .pipe(concat('plugins.js'))
       .pipe(gulp.dest('./js/'))
@@ -88,4 +71,4 @@ function watch() {
 gulp.task('watch', watch); // Gulp task watch
 
 // Gulp task default
-gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass', 'mainjs', 'pluginsCSS', 'pluginsJS'));
+gulp.task('default', gulp.parallel('watch', 'browser-sync', 'sass', 'mainjs', 'pluginsJS'));
