@@ -1,0 +1,40 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #111;
+  .container {
+    flex: 1;
+    min-height: 100vh;
+    font-family: 'Literata', serif;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    h1 {
+      font-size: 3rem;
+      padding: 10px 10px 80px 80px;
+      margin: 0;
+      color: #f4f4f4;
+    }
+  }
+  .footer {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 420px 10px 60px 10px;
+    top: 506px;
+    text-align: center;
+    color: #ccc;
+    opacity: .2;
+  }
+}
+
+@media (max-width: 600px) {
+  #app {
+    .container {
+      justify-content: center;
+      align-items: center;
+      h1 {
+        padding: 0;
+      }
+    }
+  }
+}
